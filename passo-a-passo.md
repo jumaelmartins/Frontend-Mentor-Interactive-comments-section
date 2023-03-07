@@ -5,6 +5,6 @@
 
 [x] - iniciar Repositorio
 [x] - Organizar Diretorios do Projetos
-[] - Resetar CSS
+[x] - Resetar CSS
 [] - Criar Estrutura Inicial do HTML
 [] - Criar Estrutura inicial do CSS
