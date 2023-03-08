@@ -1,9 +1,100 @@
+@use "./variables";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: map-get(variables.$primaryColors, lightGrayishBlue);
+  li {
+    list-style: none;
+  }
+}
+
+main {
+  max-width: 95%;
+  @include variables.flex(column,center,center);
+  margin: auto;
+  padding: 1rem 0;
+}
+
+ul {
+  @include variables.flex(column,center,center);
+}
+
+li {
+  display: flex;
+  position: relative;
+  background-color: map-get(variables.$neutralColors, white);
+  padding: 1rem 1rem 5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+ul > li > :nth-child(1) {
+  display: flex;
+  width: 6rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: map-get(variables.$primaryColors, lightGrayishBlue);
+  @include variables.position-absolute("", 1rem);
+  align-items: center;
+  justify-content: center;
+  color: map-get(variables.$primaryColors, moderateBlue);
+
+  button {
+    font-weight: 700;
+    border: none;
+    background: none;
+    margin: 0 1rem;
+    color: map-get(variables.$neutralColors, grayishBlue);
+  }
+
+  p {
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+}
+
+ul > li > :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  color: map-get(variables.$neutralColors, grayishBlue);
+  font-size: 1.6rem;
+}
+
+ul > li > :nth-child(2) > :nth-child(1) {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  b {
+    color: map-get(variables.$neutralColors, darkBlue);
+    margin: 0 1rem;
+  }
+
+  p {
+    color: map-get(variables.$neutralColors, grayishBlue);
+  }
+}
+
+ul > li > :nth-child(2) > :nth-child(1) > :nth-child(1) {
+  display: flex;
+}
+
+ul > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
+  @include variables.position-absolute(0.5rem, 1rem);
+  display: flex;
+  p {
+    margin: 0 1rem;
+    font-weight: 700;
+    color: map-get(variables.$primaryColors, moderateBlue);
+  }
 }
