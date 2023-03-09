@@ -12,6 +12,7 @@
 [x] - Criar Estrutura inicial do CSS Mobile:
     [x] - CSS li comentarios
     [x] - CSS form responder comentarios.
+    [X] - CSS comentarios respondidos.
 [] - Responsividade para Destop.
 
 ### Etapa 2

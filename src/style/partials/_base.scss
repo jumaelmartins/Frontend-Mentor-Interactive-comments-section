@@ -28,6 +28,7 @@ main {
 
 ul {
   @include variables.flex(column,center,center);
+  margin: 1rem 0;
 }
 
 li {
@@ -116,6 +117,7 @@ form {
     min-height: 6rem;
     margin: .5rem 0;
     padding: 1rem;
+    border-radius: .5rem;
   }
 }
 
@@ -134,3 +136,93 @@ form > fieldset{
 }
 
 
+
+
+
+ol {
+  @include variables.flex(column,center,center);
+  margin: 1rem 0 0 5%;
+  max-width: 95%;
+}
+
+
+
+li {
+  display: flex;
+  position: relative;
+  background-color: map-get(variables.$neutralColors, white);
+  padding: 1rem 1rem 5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+ol > li > :nth-child(1) {
+  display: flex;
+  width: 6rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: map-get(variables.$primaryColors, lightGrayishBlue);
+  @include variables.position-absolute("", 1rem);
+  align-items: center;
+  justify-content: center;
+  color: map-get(variables.$primaryColors, moderateBlue);
+
+  button {
+    font-weight: 700;
+    border: none;
+    background: none;
+    margin: 0 1rem;
+    color: map-get(variables.$neutralColors, grayishBlue);
+  }
+
+  p {
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+}
+
+ol > li > :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  color: map-get(variables.$neutralColors, grayishBlue);
+  font-size: 1.6rem;
+}
+
+ol > li > :nth-child(2) > :nth-child(1) {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  b {
+    color: map-get(variables.$neutralColors, darkBlue);
+    margin: 0 1rem;
+  }
+
+  p {
+    color: map-get(variables.$neutralColors, grayishBlue);
+  }
+}
+
+ol > li > :nth-child(2) > :nth-child(1) > :nth-child(1) {
+  display: flex;
+}
+
+ol > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
+  @include variables.position-absolute(0.5rem, 1rem);
+  display: flex;
+  p {
+    margin: 0 1rem;
+    font-weight: 700;
+    color: map-get(variables.$primaryColors, moderateBlue);
+  }
+}
+
+.replied-comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.replied-comment > div {
+    min-height: 100%;
+    width: 3px;
+    background-color: gray;
+}
