@@ -24,6 +24,10 @@ main {
   @include variables.flex(column,center,center);
   margin: auto;
   padding: 1rem 0;
+
+  @media screen and (min-width: 768px) {
+    max-width: 60%;
+  }
 }
 
 ul {
@@ -225,4 +229,8 @@ ol > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
     min-height: 100%;
     width: 3px;
     background-color: gray;
+}
+
+.hidden {
+  display: none;
 }
