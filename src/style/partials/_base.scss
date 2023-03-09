@@ -98,3 +98,39 @@ ul > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
     color: map-get(variables.$primaryColors, moderateBlue);
   }
 }
+
+
+
+form {
+  background-color: white;
+  width: 100%;
+  @include variables.flex(column,"",""); 
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: .5rem;
+
+  input {
+    display: flex;
+    outline: none;
+    border: 1px gray solid;
+    min-height: 6rem;
+    margin: .5rem 0;
+    padding: 1rem;
+  }
+}
+
+form > fieldset{
+  @include variables.flex("","",space-between);
+  margin: .5rem 0;
+  border: none;
+
+  button {
+    background-color: map-get(variables.$primaryColors, moderateBlue);
+    color: white; 
+    border: none;
+    width: 10rem;
+    border-radius: .5rem;
+  }
+}
+
+
