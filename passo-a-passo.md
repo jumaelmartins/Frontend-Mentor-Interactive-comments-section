@@ -13,7 +13,7 @@
     [x] - CSS li comentarios
     [x] - CSS form responder comentarios.
     [X] - CSS comentarios respondidos.
-[] - Responsividade para Destop.
+[x] - Responsividade para Destop.
 
 ### Etapa 2
 

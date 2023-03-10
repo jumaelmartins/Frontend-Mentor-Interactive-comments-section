@@ -234,3 +234,14 @@ ol > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
 .hidden {
   display: none;
 }
+
+footer {
+  max-width: 95%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: 60%;    
+  }
+}
