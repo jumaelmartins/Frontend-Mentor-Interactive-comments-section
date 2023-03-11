@@ -14,6 +14,7 @@ html {
 
 body {
   background-color: map-get(variables.$primaryColors, lightGrayishBlue);
+  height: auto;
   li {
     list-style: none;
   }
@@ -21,7 +22,7 @@ body {
 
 main {
   max-width: 95%;
-  @include variables.flex(column,center,center);
+  @include variables.flex(column, center, center);
   margin: auto;
   padding: 1rem 0;
 
@@ -31,7 +32,7 @@ main {
 }
 
 ul {
-  @include variables.flex(column,center,center);
+  @include variables.flex(column, center, center);
   margin: 1rem 0;
 }
 
@@ -43,7 +44,7 @@ li {
   border-radius: 0.5rem;
 }
 
-ul > li > :nth-child(1) {
+ul > li > .vote {
   display: flex;
   width: 6rem;
   height: 2.5rem;
@@ -68,14 +69,14 @@ ul > li > :nth-child(1) {
   }
 }
 
-ul > li > :nth-child(2) {
+ul > li > .commentContainer {
   display: flex;
   flex-direction: column;
   color: map-get(variables.$neutralColors, grayishBlue);
   font-size: 1.6rem;
 }
 
-ul > li > :nth-child(2) > :nth-child(1) {
+ul > li > .commentContainer > .commentHeader {
   display: flex;
   align-items: center;
   margin: 1rem 0;
@@ -90,11 +91,11 @@ ul > li > :nth-child(2) > :nth-child(1) {
   }
 }
 
-ul > li > :nth-child(2) > :nth-child(1) > :nth-child(1) {
+ul > li > .commentContainer > .commentHeader > :nth-child(1) {
   display: flex;
 }
 
-ul > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
+ul > li > .commentContainer > .commentHeader > :nth-child(2) {
   @include variables.position-absolute(0.5rem, 1rem);
   display: flex;
   p {
@@ -104,52 +105,44 @@ ul > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
   }
 }
 
-
-
 form {
   background-color: white;
   width: 100%;
-  @include variables.flex(column,"",""); 
+  @include variables.flex(column, "", "");
   padding: 1rem;
   margin: 1rem 0;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 
   input {
     display: flex;
     outline: none;
     border: 1px gray solid;
     min-height: 6rem;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 }
 
-form > fieldset{
-  @include variables.flex("","",space-between);
-  margin: .5rem 0;
+form > fieldset {
+  @include variables.flex("", "", space-between);
+  margin: 0.5rem 0;
   border: none;
 
   button {
     background-color: map-get(variables.$primaryColors, moderateBlue);
-    color: white; 
+    color: white;
     border: none;
     width: 10rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 }
 
-
-
-
-
 ol {
-  @include variables.flex(column,center,center);
+  @include variables.flex(column, center, center);
   margin: 1rem 0 0 5%;
   max-width: 95%;
 }
-
-
 
 li {
   display: flex;
@@ -159,7 +152,7 @@ li {
   border-radius: 0.5rem;
 }
 
-ol > li > :nth-child(1) {
+ol > li > .vote {
   display: flex;
   width: 6rem;
   height: 2.5rem;
@@ -184,14 +177,14 @@ ol > li > :nth-child(1) {
   }
 }
 
-ol > li > :nth-child(2) {
+ol > li > .commentContainer {
   display: flex;
   flex-direction: column;
   color: map-get(variables.$neutralColors, grayishBlue);
   font-size: 1.6rem;
 }
 
-ol > li > :nth-child(2) > :nth-child(1) {
+ol > li > .commentContainer > .commentHeader {
   display: flex;
   align-items: center;
   margin: 1rem 0;
@@ -206,11 +199,11 @@ ol > li > :nth-child(2) > :nth-child(1) {
   }
 }
 
-ol > li > :nth-child(2) > :nth-child(1) > :nth-child(1) {
+ol > li > .commentContainer > .commentHeader > :nth-child(1) {
   display: flex;
 }
 
-ol > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
+ol > li > .commentContainer > .commentHeader > :nth-child(2) {
   @include variables.position-absolute(0.5rem, 1rem);
   display: flex;
   p {
@@ -226,9 +219,9 @@ ol > li > :nth-child(2) > :nth-child(1) > :nth-child(2) {
 }
 
 .replied-comment > div {
-    min-height: 100%;
-    width: 3px;
-    background-color: gray;
+  min-height: 100%;
+  width: 3px;
+  background-color: gray;
 }
 
 .hidden {
@@ -242,6 +235,56 @@ footer {
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    max-width: 60%;    
+    max-width: 60%;
   }
+}
+
+.modal {
+  position: fixed;
+  background-color: rgba(185, 185, 185, .6);
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 95%;
+  border-radius: .5rem;
+
+  font-size: 2rem;
+
+  h3 {
+    color: gray;
+  }
+
+  p {
+    color: gray;
+    margin: 2rem 0;
+  }
+
+  button {
+    padding: 1rem;
+    border-radius: .5rem;
+    border: none;
+
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .modalCancel{
+    background-color: gray;
+  }
+
+  .modalDelete {
+    background-color: red;
+  }
+
 }
