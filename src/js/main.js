@@ -6,21 +6,22 @@ const form = document.querySelector("form");
 let itens;
 let id;
 
-itens = await getData();
+itens = getData();
 
 const getItens = () => JSON.parse(localStorage.getItem("comments"));
-const setItens = () => localStorage.setItem("comments", JSON.stringify(itens));
+const setItens = async () =>
+  localStorage.setItem("comments", JSON.stringify(await itens));
 
-const loadItens = () => {
-  
-  let itens = getItens();
-
+const loadItens = async () => {
+ 
   comments.innerHTML = "";
+ 
+  itens =  getItens();
+  console.log(await itens)
+  console.log(getItens())
 
   itens.comments.forEach((comment) => {
-
     if (comment.replies.length === 0) {
-
       if (comment.user.username === itens.currentUser.username) {
         comments.innerHTML += `
         <li id="${comment.id}" class="autorComment">
@@ -47,11 +48,9 @@ const loadItens = () => {
               </div>
             </li>
 
-        `
-
-
+        `;
       } else {
-      comments.innerHTML += `
+        comments.innerHTML += `
                         <li id="${comment.id}">
                         <div class="comment"> 
                             <div class="vote">
@@ -72,7 +71,7 @@ const loadItens = () => {
                         </div>
                         </li>
                         `;
-                      }
+      }
     }
 
     if (comment.replies.length > 0) {
@@ -164,52 +163,50 @@ const loadItens = () => {
   });
 };
 
-console.log(itens);
-
-form.innerHTML = `
-<input type="text" placeholder="Add comment" name="" id="" cols="30" rows="10"></input>
-<fieldset>
-<img width="32" src="${itens.currentUser.image.webp}" alt="">
-<button type="submit">send</button>
-</fieldset>
-`;
-
-
-const insertComment = () => {
-  const input = form.querySelector("input");
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    console.log(input.value);
-    id = itens.comments.length;
-    let comment = {
-      "id": id+1,
-      "content": `${input.value}`,
-      "createdAt": "1 month ago",
-      "score": 0,
-      "user": {
-        "image": { 
-          "png": `${itens.currentUser.image.png}`,
-          "webp": `${itens.currentUser.image.webp}`
+const insertComment = async () => {
+  window.addEventListener("load", (e) => {
+    const input = document.querySelector("input");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      id = (await itens).comments.length;
+      let comment = {
+        id: id + 1,
+        content: `${input.value}`,
+        createdAt: "1 month ago",
+        score: 0,
+        user: {
+          image: {
+            png: `${(await itens).currentUser.image.png}`,
+            webp: `${(await itens).currentUser.image.webp}`,
+          },
+          username: `${(await itens).currentUser.username}`,
         },
-        "username": `${itens.currentUser.username}`
-      },
-      "replies": []
-    }
-    itens = getItens();
-    itens.comments.push(comment)
-    console.log(itens.comments)
-    setItens();
-    loadItens();
-  })
+        replies: [],
+      };
+      itens = getItens();
+      itens.comments.push(comment);
+      console.log(itens.comments);
+      setItens();
+      loadItens();
+    });
+  });
 };
 
-
-
-const init = () => {
+const showForm = async () => {
+  form.innerHTML = `
+  <input type="text" placeholder="Add comment" name="" id="" cols="30" rows="10"></input>
+  <fieldset>
+  <img width="32" src="${(await itens).currentUser.image.webp}" alt="">
+  <button type="submit">send</button>
+  </fieldset>
+`;
+};
+const init = async () => {
   if (!getItens()) {
     setItens();
   }
-  loadItens();
+  showForm();
   insertComment();
-}
+  loadItens();
+};
 init();

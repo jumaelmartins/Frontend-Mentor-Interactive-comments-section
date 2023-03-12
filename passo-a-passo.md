@@ -20,11 +20,11 @@
 
 [X] - Consumir dados do arquivo JSON
 [x] - Precisei Refatora o HTML.
-[] - Exibir dados na Pagina :
-    [] - Exibir comentarios
-    [] - Exibir resposta dos comentarios
-    [] - Exibir Usuario atual
-[] - Criar Função Para Adicionar ao Local Storage
+[x] - Exibir dados na Pagina :
+    [x] - Exibir comentarios
+    [x] - Exibir resposta dos comentarios
+    [x] - Exibir Usuario atual
+[x] - Criar Função Para Adicionar ao Local Storage
 [] - Criar Função Para Remover do Local Storage
 [] - Criar Função Para Atualizar no Local Storage
 [X] - Criar Função Para Carregar do Local Storage
