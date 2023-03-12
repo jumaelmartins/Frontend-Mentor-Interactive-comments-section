@@ -27,7 +27,7 @@
 [] - Criar Função Para Adicionar ao Local Storage
 [] - Criar Função Para Remover do Local Storage
 [] - Criar Função Para Atualizar no Local Storage
-[] - Criar Função Para Carregar do Local Storage
+[X] - Criar Função Para Carregar do Local Storage
 [] - Criar Função Para Exibir Modal.
 
 ### Etapa 3
