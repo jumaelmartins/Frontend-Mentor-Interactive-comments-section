@@ -1,4 +1,4 @@
-const url = "../../data.json";
+const url = "../src/data.json";
 
 export const getData = async () => {
   try {
@@ -11,3 +11,5 @@ export const getData = async () => {
     console.error(e);
   }
 };
+
+

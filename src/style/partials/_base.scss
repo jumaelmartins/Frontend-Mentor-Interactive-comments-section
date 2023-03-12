@@ -86,13 +86,14 @@ li {
   flex-direction: column;
   color: map-get(variables.$neutralColors, grayishBlue);
   font-size: 1.6rem;
+
 }
 
 .comment > .commentContainer > .commentHeader {
   display: flex;
   align-items: center;
   margin: 1rem 0;
-
+  
   b {
     color: map-get(variables.$neutralColors, darkBlue);
     margin: 0 1rem;
@@ -226,7 +227,7 @@ form > fieldset {
 }
 
 
-.autorComment > .commentContainer .reply {
+.autorComment > .comment > .commentContainer > .reply {
   display: flex;
   @include variables.position-absolute(1rem, 1rem);
 
@@ -235,6 +236,15 @@ form > fieldset {
   }
 }
 
+
+.autorComment > .commentContainer > .reply {
+  display: flex;
+  @include variables.position-absolute(1rem, 1rem);
+
+  p {
+    margin: 0 .5rem;
+  }
+}
 
 
 

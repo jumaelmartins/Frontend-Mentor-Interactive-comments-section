@@ -5,18 +5,52 @@ const form = document.querySelector("form");
 
 let itens;
 let id;
+
 itens = await getData();
 
 const getItens = () => JSON.parse(localStorage.getItem("comments"));
 const setItens = () => localStorage.setItem("comments", JSON.stringify(itens));
 
 const loadItens = () => {
+  
+  let itens = getItens();
+
   comments.innerHTML = "";
 
   itens.comments.forEach((comment) => {
-    console.log(comment.replies);
 
     if (comment.replies.length === 0) {
+
+      if (comment.user.username === itens.currentUser.username) {
+        comments.innerHTML += `
+        <li id="${comment.id}" class="autorComment">
+        <div class="comment">
+              <div class="vote">
+                <button class="downVote">-</button>
+                <p>${comment.score}</p>
+                <button class="upVote">+</button>
+              </div>
+              
+              
+              <div class="commentContainer">
+                  <div class="commentHeader"><div><img width="32" src="${comment.user.image.webp}" alt="avatar user"> <b>${comment.user.username}<b>you</b> </b> <p>${comment.createdAt}</p></div>
+                  </div>
+
+                  <div class="reply">
+                        <img src="./src/images/icon-edit.svg" alt="edit icon">
+                        <p class="edit">edit</p>
+                        <img src="./src/images/icon-delete.svg" alt="reply icon">
+                        <p class="delete">delete</p></div>
+                   </div>
+                   <p>${comment.content}</p>
+              </div>
+              </div>
+            </li>
+
+        `
+
+
+      } else {
       comments.innerHTML += `
                         <li id="${comment.id}">
                         <div class="comment"> 
@@ -38,6 +72,7 @@ const loadItens = () => {
                         </div>
                         </li>
                         `;
+                      }
     }
 
     if (comment.replies.length > 0) {
@@ -129,20 +164,52 @@ const loadItens = () => {
   });
 };
 
-loadItens();
-
 console.log(itens);
-
-setItens();
-
-const insertComment = () => {
-  itens.comments;
-};
 
 form.innerHTML = `
 <input type="text" placeholder="Add comment" name="" id="" cols="30" rows="10"></input>
-      <fieldset>
-        <img width="32" src="${itens.currentUser.image.webp}" alt="">
-        <button type="submit">send</button>
-      </fieldset>
+<fieldset>
+<img width="32" src="${itens.currentUser.image.webp}" alt="">
+<button type="submit">send</button>
+</fieldset>
 `;
+
+
+const insertComment = () => {
+  const input = form.querySelector("input");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    console.log(input.value);
+    id = itens.comments.length;
+    let comment = {
+      "id": id+1,
+      "content": `${input.value}`,
+      "createdAt": "1 month ago",
+      "score": 0,
+      "user": {
+        "image": { 
+          "png": `${itens.currentUser.image.png}`,
+          "webp": `${itens.currentUser.image.webp}`
+        },
+        "username": `${itens.currentUser.username}`
+      },
+      "replies": []
+    }
+    itens = getItens();
+    itens.comments.push(comment)
+    console.log(itens.comments)
+    setItens();
+    loadItens();
+  })
+};
+
+
+
+const init = () => {
+  if (!getItens()) {
+    setItens();
+  }
+  loadItens();
+  insertComment();
+}
+init();
