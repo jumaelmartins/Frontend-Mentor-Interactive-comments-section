@@ -25,7 +25,7 @@ main {
   @include variables.flex(column, center, center);
   margin: auto;
   padding: 1rem 0;
-
+  
   @media screen and (min-width: 768px) {
     max-width: 60%;
   }
@@ -34,17 +34,28 @@ main {
 ul {
   @include variables.flex(column, center, center);
   margin: 1rem 0;
+  width: 100%;
 }
 
 li {
   display: flex;
+  flex-direction: column;
   position: relative;
-  background-color: map-get(variables.$neutralColors, white);
-  padding: 1rem 1rem 5rem 1rem;
   border-radius: 0.5rem;
+  margin: .5rem 0;
 }
 
-ul > li > .vote {
+.comment {
+  background-color: map-get(variables.$neutralColors, white);
+  margin: .5rem 0;
+  padding: 1rem 1rem 5rem 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+
+
+.comment > .vote {
   display: flex;
   width: 6rem;
   height: 2.5rem;
@@ -69,14 +80,15 @@ ul > li > .vote {
   }
 }
 
-ul > li > .commentContainer {
+
+.comment > .commentContainer {
   display: flex;
   flex-direction: column;
   color: map-get(variables.$neutralColors, grayishBlue);
   font-size: 1.6rem;
 }
 
-ul > li > .commentContainer > .commentHeader {
+.comment > .commentContainer > .commentHeader {
   display: flex;
   align-items: center;
   margin: 1rem 0;
@@ -91,11 +103,11 @@ ul > li > .commentContainer > .commentHeader {
   }
 }
 
-ul > li > .commentContainer > .commentHeader > :nth-child(1) {
+.comment > .commentContainer > .commentHeader > :nth-child(1) {
   display: flex;
 }
 
-ul > li > .commentContainer > .commentHeader > :nth-child(2) {
+.comment > .commentContainer > .commentHeader > :nth-child(2) {
   @include variables.position-absolute(0.5rem, 1rem);
   display: flex;
   p {
@@ -138,21 +150,21 @@ form > fieldset {
   }
 }
 
-ol {
+.repliedComments {
   @include variables.flex(column, center, center);
   margin: 1rem 0 0 5%;
   max-width: 95%;
 }
 
-li {
-  display: flex;
-  position: relative;
+.repliedComments > li {
   background-color: map-get(variables.$neutralColors, white);
+  margin: 1rem 0;
   padding: 1rem 1rem 5rem 1rem;
   border-radius: 0.5rem;
 }
 
-ol > li > .vote {
+
+.repliedComments > li > .vote {
   display: flex;
   width: 6rem;
   height: 2.5rem;
@@ -177,33 +189,33 @@ ol > li > .vote {
   }
 }
 
-ol > li > .commentContainer {
+.repliedComments > li > .commentContainer {
   display: flex;
   flex-direction: column;
   color: map-get(variables.$neutralColors, grayishBlue);
   font-size: 1.6rem;
 }
 
-ol > li > .commentContainer > .commentHeader {
+.repliedComments > li > .commentContainer > .commentHeader {
   display: flex;
   align-items: center;
   margin: 1rem 0;
-
+  
   b {
     color: map-get(variables.$neutralColors, darkBlue);
     margin: 0 1rem;
   }
-
+  
   p {
     color: map-get(variables.$neutralColors, grayishBlue);
   }
 }
 
-ol > li > .commentContainer > .commentHeader > :nth-child(1) {
+.repliedComments > li > .commentContainer > .commentHeader > :nth-child(1) {
   display: flex;
 }
 
-ol > li > .commentContainer > .commentHeader > :nth-child(2) {
+.repliedComments > li > .commentContainer > .commentHeader > :nth-child(2) {
   @include variables.position-absolute(0.5rem, 1rem);
   display: flex;
   p {
@@ -213,16 +225,34 @@ ol > li > .commentContainer > .commentHeader > :nth-child(2) {
   }
 }
 
-.replied-comment {
+
+.autorComment > .commentContainer .reply {
   display: flex;
-  justify-content: space-between;
+  @include variables.position-absolute(1rem, 1rem);
+
+  p {
+    margin: 0 .5rem;
+  }
 }
 
-.replied-comment > div {
-  min-height: 100%;
-  width: 3px;
-  background-color: gray;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .hidden {
   display: none;
@@ -239,6 +269,7 @@ footer {
   }
 }
 
+/*modal*/
 .modal {
   position: fixed;
   background-color: rgba(185, 185, 185, .6);
@@ -246,7 +277,7 @@ footer {
   height: 100%;
   width: 100%;
   z-index: 2;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -279,6 +310,8 @@ footer {
     text-transform: uppercase;
   }
 
+
+
   .modalCancel{
     background-color: gray;
   }
@@ -286,5 +319,4 @@ footer {
   .modalDelete {
     background-color: red;
   }
-
 }
