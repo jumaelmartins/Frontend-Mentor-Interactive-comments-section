@@ -184,7 +184,7 @@ const insertComment = () => {
     let comment = {
       "id": id+1,
       "content": `${input.value}`,
-      "createdAt": "1 month ago",
+      "createdAt": "Now",
       "score": 0,
       "user": {
         "image": { 
@@ -203,6 +203,29 @@ const insertComment = () => {
   })
 };
 
+const replyComment = () => {
+  const reply = document.querySelectorAll(".reply");
+  console.log(reply)
+  reply.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      console.log(e.target.innerText)
+      if(e.target.innerText === "reply") {
+
+
+        let li = element.closest("li")
+
+        form.innerHTML = `
+              <input type="text" placeholder="Add comment" name="" id="" cols="30" rows="10"></input>
+              <fieldset>
+              <img width="32" src="${itens.currentUser.image.webp}" alt="">
+              <button type="submit">send</button>
+              </fieldset>
+              `;              
+      }
+    })
+  })
+
+}
 
 
 const init = () => {
@@ -211,5 +234,6 @@ const init = () => {
   }
   loadItens();
   insertComment();
+  replyComment();
 }
 init();
