@@ -6,7 +6,7 @@ const form = document.querySelector("form");
 let itens;
 let id;
 
-itens = await getData();
+itens = getData();
 
 const getItens = () => JSON.parse(localStorage.getItem("comments"));
 const setItens = () => localStorage.setItem("comments", JSON.stringify(itens));
@@ -30,16 +30,15 @@ const loadItens = () => {
                 <p>${comment.score}</p>
                 <button class="upVote">+</button>
               </div>
-              
+
               
               <div class="commentContainer">
                   <div class="commentHeader"><div><img width="32" src="${comment.user.image.webp}" alt="avatar user"> <b>${comment.user.username}<b>you</b> </b> <p>${comment.createdAt}</p></div>
                   </div>
-
                   <div class="reply">
-                        <img src="./src/images/icon-edit.svg" alt="edit icon">
+                        <img src="/images/icon-edit.svg" alt="edit icon">
                         <p class="edit">edit</p>
-                        <img src="./src/images/icon-delete.svg" alt="reply icon">
+                        <img src="/images/icon-delete.svg" alt="reply icon">
                         <p class="delete">delete</p></div>
                    </div>
                    <p>${comment.content}</p>
@@ -64,7 +63,7 @@ const loadItens = () => {
                             <div class="commentContainer">
                             <div class="commentHeader">
                                 <div><img width="32" src="${comment.user.image.webp}" alt="avatar user"> <b>${comment.user.username}</b> <p>${comment.createdAt}</p></div>
-                                <div class="reply"><img src="./src/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
+                                <div class="reply"><img src="/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
                             </div>
                         
                             <p>${comment.content}</p>
@@ -88,7 +87,7 @@ const loadItens = () => {
                             <div class="commentContainer">
                             <div class="commentHeader">
                                 <div><img width="32" src="${comment.user.image.webp}" alt="avatar user"> <b>${comment.user.username}</b> <p>${comment.createdAt}</p></div>
-                                <div class="reply"><img src="./src/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
+                                <div class="reply"><img src="/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
                             </div>
                         
                             <p>${comment.content}</p>
@@ -118,9 +117,9 @@ const loadItens = () => {
                   </div>
 
                   <div class="reply">
-                        <img src="./src/images/icon-edit.svg" alt="edit icon">
+                        <img src="/images/icon-edit.svg" alt="edit icon">
                         <p class="edit">edit</p>
-                        <img src="./src/images/icon-delete.svg" alt="reply icon">
+                        <img src="/images/icon-delete.svg" alt="reply icon">
                         <p class="delete">delete</p></div>
                    </div>
                    <p>${replie.content}</p>
@@ -149,7 +148,7 @@ const loadItens = () => {
                         <div class="commentContainer">
                             <div class="commentHeader">
                             <div><img width="32" src="${replie.user.image.webp}" alt="avatar user"> <b>${replie.user.username}</b> <p>1m ago</p></div>
-                            <div class="reply"><img src="./src/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
+                            <div class="reply"><img src="/images/icon-reply.svg" alt="reply ivon"> <p>reply</p></div>
                             </div>
                             <p>${replie.content}</p>
                         </div>
@@ -163,8 +162,6 @@ const loadItens = () => {
     }
   });
 };
-
-console.log(itens);
 
 form.innerHTML = `
 <input type="text" placeholder="Add comment" name="" id="" cols="30" rows="10"></input>
@@ -205,7 +202,6 @@ const insertComment = () => {
 
 const replyComment = () => {
   const reply = document.querySelectorAll(".reply");
-  console.log(reply)
   reply.forEach((element) => {
     element.addEventListener("click", (e) => {
       console.log(e.target.innerText)

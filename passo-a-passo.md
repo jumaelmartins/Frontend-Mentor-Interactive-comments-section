@@ -17,7 +17,6 @@
 
 ### Etapa 2
 
-
 [X] - Consumir dados do arquivo JSON
 [x] - Precisei Refatora o HTML.
 [] - Exibir dados na Pagina :
